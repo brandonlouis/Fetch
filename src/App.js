@@ -1,12 +1,17 @@
+import React from 'react';
 import './App.css';
+import Header from './components/Header';
+import ShowDog from './components/ShowDog';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-    
-    
+
+    <div className="contentContainer">
+      <Header />
+      <ShowDog />
     </div>
-  );
+
+  )
 }
 
 export default App;
