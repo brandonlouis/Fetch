@@ -1,16 +1,15 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header';
-import ShowDog from './components/ShowDog';
+import ShowDog from './pages/ShowDog';
 
 const App = () => {
   return (
-
-    <div className="contentContainer">
-      <Header />
-      <ShowDog />
-    </div>
-
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<ShowDog />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

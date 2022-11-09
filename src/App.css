@@ -1,22 +1,21 @@
 html {
-  background-color: antiquewhite;
+  background-color: #eeeee7;
 }
 
-.contentContainer {
-  display: block;
-}
-
-.searchContainer {
+.header {
   display: flex;
-  height: 10rem;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(207, 207, 207);
+  margin-top: 50px;
+}
+.searchForm {
+  margin-top: 50px;
+  width: 40vw;
 }
 
 .dogResults {
   padding: 5rem 0;
-  background-color: antiquewhite;
   display: flex;
   align-items: center;
   justify-content: center;
