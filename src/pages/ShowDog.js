@@ -1,4 +1,4 @@
-import { Autocomplete, Slider, TextField, Typography } from "@mui/material"
+import { Autocomplete, CircularProgress, Grid, Slider, TextField } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import Resource from "../components/Resource"
 
@@ -6,13 +6,45 @@ export default function ShowDog() {
   const [webURL, setWebURL] = useState('https://dog.ceo/api/breeds/image/random/12')
   const [text, setText] = useState("")
   const [sliderQty, setSliderQty] = useState(12)
+  const [dogList, setDogList] = useState([])
+  const [resultsCount, setResultsCount] = useState(12)
 
-  const searchForDog = async() => {
-    if (text === "" || text.trim().length === 0) {
+  useEffect(() => {
+    const fetchDogData = async () => {
+      if (dogList.length === 0) {
+        try {
+        const res = await fetch("https://dog.ceo/api/breeds/list/all")
+        const data = await res.json()
+        
+        Object.keys(data.message).map((key) => {
+          if (data.message[key].length > 0) {
+            data.message[key].map((subKey) => {
+              setDogList(dogList => [...dogList, `${subKey.charAt(0).toUpperCase() + subKey.slice(1)} ${key.charAt(0).toUpperCase() + key.slice(1)}`])
+            })
+          } else {
+            setDogList((dogList) => [...dogList, key.charAt(0).toUpperCase() + key.slice(1)])
+          }
+        })
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    }
+
+    fetchDogData()
+  }, [])
+
+  const searchForDog = async () => {
+    if (!text || text.trim().length === 0) {
       setWebURL(`https://dog.ceo/api/breeds/image/random/${sliderQty}`)
     } else {
-      console.log(text.trim())
-      setWebURL(`https://dog.ceo/api/breed/${text.toLowerCase()}/images/random/${sliderQty}`)
+      const breedName = text.trim().toLowerCase()
+
+      if (breedName.split(" ").length > 1) {
+        setWebURL(`https://dog.ceo/api/breed/${breedName.split(/\s+/).reverse().join("/")}/images/random/${sliderQty}`)
+      } else {
+        setWebURL(`https://dog.ceo/api/breed/${breedName}/images/random/${sliderQty}`)
+      }
     }
   }
 
@@ -21,12 +53,29 @@ export default function ShowDog() {
     searchForDog()
   }
 
+  const urlToBreed = (url) => {
+    const urlBreedName = url.split("/")[4].split('-').reverse()
+
+    if (urlBreedName.length > 1) {
+      return `${urlBreedName[0].charAt(0).toUpperCase() + urlBreedName[0].slice(1)} ${urlBreedName[1].charAt(0).toUpperCase() + urlBreedName[1].slice(1)}`
+    } else {
+      return urlBreedName[0].charAt(0).toUpperCase() + urlBreedName[0].slice(1)
+    }
+  }
+
   const render = (data) => {
-    if (data.loading === true) return <p>Loading ...</p>
-    if (data.error === true) return <p>No results found</p>
+    if (data.loading === true) return <CircularProgress color="error"/>
+    if (data.error === true) return <p><b>No results found</b></p>
+    setResultsCount(data.trans.message.length)
+
     return (data.trans.message.map( (dog,key) => (
-      <div key={key}>
-          <img className='image' src={dog} height='350' width='350'/>
+      <div className="dogCard" key={key}>
+        <div className="breedCard">
+          <p><b>{urlToBreed(dog)}</b></p>
+        </div>
+        <div className="imgCard">
+          <img className="image" src={dog}/>
+        </div>
       </div>
     )))
   }
@@ -34,31 +83,47 @@ export default function ShowDog() {
   return (
     <section>
       <div className="header">
-        <img src={require("../img/logo.png")} height="120px"/>
+        <div className="logoSwipe">
+          <a href="/"><img src={process.env.PUBLIC_URL + '/logo.png'}/></a>
+        </div>
 
         <form onSubmit={handleSubmit} autoComplete="off" className="searchForm">
-          <TextField
-            fullWidth
-            id="outlined-basic" label="Search breed name" variant="outlined"
-            onChange={(e) => setText(e.target.value)}
-          />
-
-          <Typography id="non-linear-slider" gutterBottom style={{marginTop: '30px'}}>
-            Results: {sliderQty}
-          </Typography>
-          <Slider 
+          <p style={{marginBottom: '5px'}}>
+            Number of images: {sliderQty}
+          </p>
+          <Slider
             defaultValue={12}
             min={1} max={50}
             valueLabelDisplay="auto"
-            onChange={(e) => setSliderQty(e.target.value)}
+            color="error"
+            onChange={(e, value) => setSliderQty(value)}
+          />
+
+          <Autocomplete
+            freeSolo
+            disablePortal
+            id="searchDropdown"
+            options={dogList}
+            onChange={(e, value) => setText(value)}
+            renderInput={(params) => 
+              <TextField
+                {...params}
+                style={{marginTop: '20px'}}
+                fullWidth
+                id="searchText" color="error" label="Search breed name" variant="outlined"
+                onChange={(e, value) => setText(value)} // To allow users to search blank to revert back to totally random images
+              />}
           />
         </form>
       </div>
 
       <div>
-        <div class="dogResults" key={webURL}>
-          <Resource path={webURL} render={render} />
-        </div>
+        <Grid container spacing={0} gap={3} className="dogResults" key={webURL}>
+          <Resource path={webURL} render={render}/>
+        </Grid>
+      </div>
+      <div className="resultsCount">
+        <p>Results found: {resultsCount}</p>
       </div>
     </section>
   )

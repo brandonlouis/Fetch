@@ -1,7 +1,7 @@
 import React,  { useState, useEffect } from 'react';
 import axios from 'axios'; 
 
-const Resource  = ({path, render}) => {
+const Resource  = ({ path, render }) => {
 
     const initialState = {
         trans:[],
@@ -9,19 +9,18 @@ const Resource  = ({path, render}) => {
         error: null
     }
 
-    const [state, setState] = useState(initialState); 
+    const [state, setState] = useState( initialState ); 
 
-
-    const getData = async() => { 
+    const getData = async () => { 
         try {
-            const result = await axios.get(path);
+            const result = await axios.get( path );
 
             const newData = { 
                 trans: result.data,
                 loading: false,
                 error: null 
             }
-            setState( newData );
+            setState(newData);
             
         } catch (error) {
             setState({error:true});
@@ -34,9 +33,7 @@ const Resource  = ({path, render}) => {
     }, []);
 
     return (
-        <div className='showList'>
-            {render(state)} 
-        </div>
+        render( state )
     )
 }
 
