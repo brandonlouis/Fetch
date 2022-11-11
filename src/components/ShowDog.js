@@ -1,4 +1,4 @@
-import { Autocomplete, CircularProgress, Grid, Slider, TextField } from "@mui/material"
+import { Box, Modal, Autocomplete, CircularProgress, Grid, Slider, TextField } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import Resource from "./Resource"
 
@@ -7,7 +7,11 @@ export default function ShowDog() {
   const [text, setText] = useState("")
   const [sliderQty, setSliderQty] = useState(12)
   const [dogList, setDogList] = useState([])
-  
+  const [modalURL, setModalURL] = useState([])
+  const [modalOpen, setModalOpen] = useState(false)
+  const openModal = () => setModalOpen(true)
+  const closeModal = () => setModalOpen(false)
+
   useEffect(() => {
     const fetchDogData = async () => {
       if (dogList.length === 0) {
@@ -72,7 +76,7 @@ export default function ShowDog() {
           <p><b>{urlToBreed(dog)}</b></p>
         </div>
         <div className="imgCard">
-          <img className="image" src={dog}/>
+          <img className="image" src={dog} onClick={(e) => {setModalURL(dog); openModal(e)}}/>
         </div>
       </div>
     )))
@@ -120,6 +124,15 @@ export default function ShowDog() {
           <Resource path={webURL} render={render}/>
         </Grid>
       </div>
+
+      <Modal
+        open={modalOpen}
+        onClose={closeModal}
+      >
+        <Box className="modalPicture">
+          <img src={modalURL}/>
+        </Box>
+      </Modal>
     </section>
   )
 }
