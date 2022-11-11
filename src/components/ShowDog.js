@@ -1,14 +1,13 @@
 import { Autocomplete, CircularProgress, Grid, Slider, TextField } from "@mui/material"
 import React, { useState, useEffect } from "react"
-import Resource from "../components/Resource"
+import Resource from "./Resource"
 
 export default function ShowDog() {
   const [webURL, setWebURL] = useState('https://dog.ceo/api/breeds/image/random/12')
   const [text, setText] = useState("")
   const [sliderQty, setSliderQty] = useState(12)
   const [dogList, setDogList] = useState([])
-  const [resultsCount, setResultsCount] = useState(12)
-
+  
   useEffect(() => {
     const fetchDogData = async () => {
       if (dogList.length === 0) {
@@ -66,7 +65,6 @@ export default function ShowDog() {
   const render = (data) => {
     if (data.loading === true) return <CircularProgress color="error"/>
     if (data.error === true) return <p><b>No results found</b></p>
-    setResultsCount(data.trans.message.length)
 
     return (data.trans.message.map( (dog,key) => (
       <div className="dogCard" key={key}>
@@ -121,9 +119,6 @@ export default function ShowDog() {
         <Grid container spacing={0} gap={3} className="dogResults" key={webURL}>
           <Resource path={webURL} render={render}/>
         </Grid>
-      </div>
-      <div className="resultsCount">
-        <p>Results found: {resultsCount}</p>
       </div>
     </section>
   )

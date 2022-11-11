@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import ShowDog from './pages/ShowDog';
+import ShowDog from './components/ShowDog';
 
 const App = () => {
   return (
