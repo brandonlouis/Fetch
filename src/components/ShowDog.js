@@ -1,4 +1,5 @@
-import { Box, Modal, Autocomplete, CircularProgress, Grid, Slider, TextField } from "@mui/material"
+import { IconButton, InputAdornment, Box, Modal, Autocomplete, CircularProgress, Grid, Slider, TextField } from "@mui/material"
+import SearchIcon from '@mui/icons-material/Search';
 import React, { useState, useEffect } from "react"
 import Resource from "./Resource"
 
@@ -106,14 +107,26 @@ export default function ShowDog() {
             disablePortal
             id="searchDropdown"
             options={dogList}
+            forcePopupIcon={false}
+            disableClearable
             onChange={(e, value) => setText(value)}
             renderInput={(params) => 
               <TextField
                 {...params}
                 style={{marginTop: '20px'}}
                 fullWidth
-                id="searchText" color="error" label="Search breed name" variant="outlined"
+                id="searchText" color="common" label="Search breed name" variant="outlined"
                 onChange={(e, value) => setText(value)} // To allow users to search blank to revert back to totally random images
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={searchForDog}>
+                        <SearchIcon/>
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
               />}
           />
         </form>
