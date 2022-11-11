@@ -180,10 +180,19 @@ section {
     margin-top: 30px;
   }
 
+  .dogResults {
+    padding-top: 50px;
+  }
+
   .logoSwipe,
   .logoSwipe::after,
   .logoSwipe img {
     width: 350px;
     height: 90.3px;
+  }
+
+  .modalPicture img {
+    max-width: 80vw;
+    max-height: 80vh;
   }
 }
