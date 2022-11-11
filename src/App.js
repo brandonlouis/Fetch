@@ -1,12 +1,16 @@
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import ShowDog from './components/ShowDog';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-    
-    
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<ShowDog />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
