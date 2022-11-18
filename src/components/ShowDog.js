@@ -73,11 +73,11 @@ export default function ShowDog() {
 
     return (data.trans.message.map( (dog,key) => (
       <div className="dogCard" key={key}>
-        <div className="breedCard">
-          <p><b>{urlToBreed(dog)}</b></p>
-        </div>
         <div className="imgCard">
           <img className="image" src={dog} onClick={(e) => {setModalURL(dog); openModal(e)}}/>
+        </div>
+        <div className="breedCard">
+          <p><b>{urlToBreed(dog)}</b></p>
         </div>
       </div>
     )))
