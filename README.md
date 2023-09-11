@@ -1,4 +1,4 @@
-# Dog Breed Search Engine (ReactJSm, API)
+# Dog Breed Search Engine (ReactJS, API)
 <img src="./public/logo-w.png" alt="fetchLogo" width="350"/></br>
 A simple responsive website for searching of dog breeds, utilizing Dog CEO API.
 
