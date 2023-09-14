@@ -38,7 +38,7 @@ A simple responsive website for searching of dog breeds, utilizing Dog CEO API.
 
 ### Useful resources
 
-- [shrtcode](https://shrtco.de/) - API utilized for shortening of URLs.
+- [Dog CEO](https://dog.ceo/) - API utilized for retrieval of dog information.
 
 ## Author
 
