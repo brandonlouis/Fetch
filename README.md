@@ -6,8 +6,6 @@ A simple responsive website for searching of dog breeds, utilizing Dog CEO API.
 
 - [Overview](#overview)
   - [Screenshots](#screenshots)
-    - [Desktop](#desktop)
-    - [Mobile](#mobile)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -22,13 +20,8 @@ A simple responsive website for searching of dog breeds, utilizing Dog CEO API.
 
 ### Screenshots
 
-#### Desktop
-![desktop](./screenshots/desktop.jpeg)
-![desktopImageView](./screenshots/desktopImageView.png)
-
-#### Mobile
-![mobile](./screenshots/mobile.jpeg)
-![mobileImageView](./screenshots/mobileImageView.png)
+![desktop](./screenshots/desktop.png)
+![mobile](./screenshots/mobile.png)
 
 ### Links
 
@@ -45,7 +38,7 @@ A simple responsive website for searching of dog breeds, utilizing Dog CEO API.
 
 ### Useful resources
 
-- [Dog CEO](https://dog.ceo/) - API utilized for retrieval of dog information.
+- [shrtcode](https://shrtco.de/) - API utilized for shortening of URLs.
 
 ## Author
 
