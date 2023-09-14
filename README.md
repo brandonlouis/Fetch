@@ -32,6 +32,7 @@ A simple responsive website for searching of dog breeds, utilizing Dog CEO API.
 ### Built with
 
 - [React](https://reactjs.org/) - JS library
+- [MUI](https://mui.com/) - React Library
 - Semantic HTML5 markup
 - CSS custom properties
 - Adobe Photoshop
