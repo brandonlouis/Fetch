@@ -1,35 +1,29 @@
-# Dog Breed Search Engine (ReactJS, API)
-<img src="./public/logo-w.png" alt="fetchLogo" width="350"/></br>
-A simple responsive website for searching of dog breeds, utilizing Dog CEO API.
+![preview](./screenshots/preview.png)
 
-## Table of contents
+<h1 align="center">Dog Breed Search Engine (ReactJS)</h1>
 
-- [Overview](#overview)
-  - [Screenshots](#screenshots)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
+<div align="center">
 
-## Overview
+[Live Site](https://blc7896530-fetch.netlify.app/) | [Specifications](./Specifications.pdf)
 
-### The challenge
+A responsive website for searching of dog breeds, utilizing Dog CEO API.
 
-[Specifications.pdf](./Specifications.pdf)
+</div>
 
-### Screenshots
+## The challenge
+
+Users should be able to:
+
+- View the optimal layout depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Search for different dog breeds and adjust the number of results
+
+## Screenshots
 
 ![desktop](./screenshots/desktop.png)
 ![mobile](./screenshots/mobile.png)
 
-### Links
-
-- Live Site URL: https://blc7896530-fetch.netlify.app/
-
-## My process
-
-### Built with
+## Built with
 
 - [React](https://reactjs.org/) - JS library
 - [MUI](https://mui.com/) - React Library
@@ -37,7 +31,7 @@ A simple responsive website for searching of dog breeds, utilizing Dog CEO API.
 - CSS custom properties
 - Adobe Photoshop
 
-### Useful resources
+## Useful resources
 
 - [Dog CEO](https://dog.ceo/) - API utilized for retrieval of dog information.
 
